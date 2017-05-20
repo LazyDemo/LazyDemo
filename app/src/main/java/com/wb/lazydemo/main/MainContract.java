@@ -13,6 +13,7 @@ import com.wb.lazydemo.BaseView;
 public interface MainContract {
     interface View extends BaseView<Presenter>{
 
+
     }
     interface Presenter extends BasePresenter{
         public void doListener(int position, Context context);
