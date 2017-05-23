@@ -1,6 +1,7 @@
 package com.wb.lazydemo.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -23,7 +24,10 @@ public class MainPresenter implements MainContract.Presenter {
     public void doListener(int position, Context context) {
         switch (position){
             case 0:
-                Toast.makeText(context,String.valueOf(position),Toast.LENGTH_LONG).show();
+//                Toast.makeText(context,String.valueOf(position),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setAction("com.wb.lazydemo.LotteryActivity");
+                context.startActivity(intent);
                 break;
         }
     }
