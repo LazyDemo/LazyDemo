@@ -22,7 +22,6 @@ public class LotteryActivity extends AppCompatActivity implements View.OnClickLi
     private void initview() {
         lotteryStart = (ImageView) this.findViewById(R.id.lotteryStart);
         lotteryStart.setOnClickListener(this);
-
         lotteryView = (LotteryView) this.findViewById(R.id.lotteryView);
 
     }

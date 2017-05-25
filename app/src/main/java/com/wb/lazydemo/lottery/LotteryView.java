@@ -251,7 +251,6 @@ public class LotteryView extends SurfaceView implements SurfaceHolder.Callback,R
                     drawText(tmpAngle, sweepAngle, mStrs[i]);
                     // 绘制Icon
                     drawIcon(tmpAngle, i);
-
                     tmpAngle += sweepAngle;
                 }
                 // 如果mSpeed不等于0，则相当于在滚动
