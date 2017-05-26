@@ -1,19 +1,26 @@
-package com.wb.lazydemo.main;
+package com.wb.lazydemo.main.view;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.wb.lazydemo.R;
+import com.wb.lazydemo.main.MyItemTouchHelperCallback;
+import com.wb.lazydemo.main.adapter.MainAdapter;
+import com.wb.lazydemo.main.MainContract;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,7 +31,7 @@ import java.util.List;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements MainContract.View{
+public class MainFragment extends Fragment implements MainContract.View {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -77,21 +84,33 @@ public class MainFragment extends Fragment implements MainContract.View{
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         // Inflate the layout for this fragment
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        GridLayoutManager manager = new GridLayoutManager(getActivity(),2);
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return position%3 == 0 ? 2 : 1;
+            }
+        });
+        recyclerView.setLayoutManager(manager);
         initData();
         adapter = new MainAdapter(getActivity(),list);
         recyclerView.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new MyItemTouchHelperCallback(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         adapter.setListener(new MainAdapter.OnRecycleViewItemClickListener() {
             @Override
             public void onItemClick(View view) {
-                int position = recyclerView.getChildAdapterPosition(view);
-                mainPresenter.doListener(position,getActivity());
+//                int position = recyclerView.getChildAdapterPosition(view);
+                mainPresenter.doListener(view.findViewById(R.id.main_item),getActivity());
 
             }
 
             @Override
                 public void onItemLongClick(View view) {
-
+//                Toast.makeText(getActivity(),"longclick",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -100,8 +119,16 @@ public class MainFragment extends Fragment implements MainContract.View{
 
     private void initData() {
         list = new ArrayList<String>();
-        list.add("lottery test");
-//        list.add("");
+        list.add(getResources().getString(R.string.lotteryTo));
+        list.add(getResources().getString(R.string.animTo));
+        list.add("test");
+        list.add("test");
+        list.add("test");
+        list.add("test");
+        list.add("test");
+        list.add("test");
+        list.add("test");
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

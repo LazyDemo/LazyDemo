@@ -1,6 +1,7 @@
 package com.wb.lazydemo.main;
 
 import android.content.Context;
+import android.view.View;
 
 import com.wb.lazydemo.BasePresenter;
 import com.wb.lazydemo.BaseView;
@@ -16,6 +17,6 @@ public interface MainContract {
 
     }
     interface Presenter extends BasePresenter{
-        public void doListener(int position, Context context);
+        public void doListener(android.view.View view, Context context);
     }
 }

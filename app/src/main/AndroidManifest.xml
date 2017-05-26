@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,6 +18,13 @@
         <activity android:name=".lottery.LotteryActivity">
             <intent-filter>
                 <action android:name="com.wb.lazydemo.LotteryActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".anim.AnimActivity">
+            <intent-filter>
+                <action android:name="com.wb.lazydemo.AnimActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

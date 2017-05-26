@@ -1,4 +1,4 @@
-package com.wb.lazydemo.main;
+package com.wb.lazydemo.main.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wb.lazydemo.R;
+import com.wb.lazydemo.main.MyItemTouchHelperCallback;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,9 +18,14 @@ import java.util.List;
  * email: lazydemo@163.com
  */
 
-public class MainAdapter extends RecyclerView.Adapter implements View.OnClickListener,View.OnLongClickListener{
+public class MainAdapter extends RecyclerView.Adapter implements View.OnClickListener,View.OnLongClickListener,MyItemTouchHelperCallback.IAdapterMove{
 
     private Context context;
+
+    public List<String> getList() {
+        return list;
+    }
+
     private List<String> list;//功能选项
 
     private OnRecycleViewItemClickListener listener = null;
@@ -26,6 +33,13 @@ public class MainAdapter extends RecyclerView.Adapter implements View.OnClickLis
     public MainAdapter(Context context, List<String> list) {
         this.context = context;
         this.list = list;
+    }
+
+    @Override
+    public void move(int oldPosition, int newPosition) {
+        Collections.swap(this.getList(), oldPosition, newPosition);
+
+        this.notifyItemMoved(oldPosition,newPosition);
     }
 
     //自定义监听事件
@@ -79,10 +93,10 @@ public class MainAdapter extends RecyclerView.Adapter implements View.OnClickLis
         return false;
     }
 
-    class MainViewHolder extends RecyclerView.ViewHolder{
+    private class MainViewHolder extends RecyclerView.ViewHolder{
         private TextView textView;
 
-        public MainViewHolder(View itemView) {
+        private MainViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.main_item);
         }

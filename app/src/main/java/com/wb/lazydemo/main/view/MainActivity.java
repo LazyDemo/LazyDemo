@@ -1,16 +1,12 @@
-package com.wb.lazydemo.main;
+package com.wb.lazydemo.main.view;
 
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 
 import com.wb.lazydemo.R;
+import com.wb.lazydemo.main.presenter.MainPresenter;
 import com.wb.lazydemo.utils.ActivityUtils;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by lazydemo on 2017/05/20 0020.
@@ -38,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 
 
 }
