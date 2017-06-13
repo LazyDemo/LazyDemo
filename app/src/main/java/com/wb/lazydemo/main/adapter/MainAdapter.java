@@ -40,6 +40,7 @@ public class MainAdapter extends RecyclerView.Adapter implements View.OnClickLis
         Collections.swap(this.getList(), oldPosition, newPosition);
 
         this.notifyItemMoved(oldPosition,newPosition);
+
     }
 
     //自定义监听事件
